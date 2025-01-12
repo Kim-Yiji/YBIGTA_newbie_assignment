@@ -55,7 +55,7 @@ for file in *.py; do
     output_dir="../output/${problem_name}_output"  # 출력 디렉토리 경로
 
     # 문제에 대한 입력을 받고 출력 파일을 생성
-    python "$file" "$input_dir" > "$output_dir"
+    python "$file" < "$input_dir" > "$output_dir"
     echo "$file 실행 완료, 출력 파일: $output_dir"
 done
 
