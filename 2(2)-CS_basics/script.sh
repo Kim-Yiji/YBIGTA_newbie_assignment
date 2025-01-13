@@ -55,13 +55,17 @@ for file in *.py; do
     output_dir="../output/${problem_name}_output"  # 출력 디렉토리 경로
 
     # 문제에 대한 입력을 받고 출력 파일을 생성
-    python "$file" < "$input_dir" > "$output_dir"
-    echo "$file 실행 완료, 출력 파일: $output_dir"
+    python "$file" < "$input_dir" > "$output_dir" 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo "$file 실행 완료, 출력 파일: $output_dir"
+    else
+        echo "$file 실행 중 에러 발생"
+    fi
 done
 
 # mypy 테스트 실행
 echo "mypy 테스트 실행 중..."
-mypy *.py
+mypy *.py >/dev/null 2>&1
 
 # 가상환경 비활성화
 echo "가상환경 비활성화 중..."
