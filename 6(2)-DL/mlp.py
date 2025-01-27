@@ -271,7 +271,7 @@ def relu(x):
 
 def leakyrelu(x):
     ### CODE HERE ###
-    alpha = 0.001
+    alpha = 0.0001
     x = np.where(x >= 0, x, alpha * x)
     ############################
     return x 
