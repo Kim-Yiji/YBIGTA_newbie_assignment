@@ -2,7 +2,10 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
+from torchvision import datasets, transforms #type: ignore
+# import torchvision  # type: ignore
+# import torchvision.transforms as transforms  # type: ignore
+# import torchvision.datasets as datasets  # type: ignore
 from typing import Any
 from resnet import ResNet, BasicBlock
 from config import *
