@@ -36,7 +36,7 @@ class Word2Vec(nn.Module):
         tokenized_corpus = [tokenizer.convert_tokens_to_ids(sentence) for sentence in tokenized_corpus]
 
         for epoch in range(num_epochs):
-            total_loss = 0
+            total_loss = 0.0
             for sentence in tokenized_corpus:
                 if len(sentence) < 2 * self.window_size + 1:
                     continue
