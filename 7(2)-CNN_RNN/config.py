@@ -8,7 +8,7 @@ d_model = 256
 window_size = 7
 method: Literal["cbow", "skipgram"] = "skipgram"
 lr_word2vec = 1e-03
-num_epochs_word2vec = 5
+num_epochs_word2vec = 10
 
 # GRU
 hidden_size = 256

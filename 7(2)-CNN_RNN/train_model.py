@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     # load Word2Vec checkpoint and get trained embeddings
     word2vec = Word2Vec(vocab_size, d_model, window_size, method)
-    checkpoint = torch.load("word2vec.pt")
+    checkpoint = torch.load("word2vec.pt", map_location=device)
     word2vec.load_state_dict(checkpoint)
     embeddings = word2vec.embeddings_weight()
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     # load train, validation dataset
     dataset = load_dataset("google-research-datasets/poem_sentiment")
     train_loader = DataLoader(dataset["train"], batch_size=batch_size, shuffle=True)
-    validation_loader = DataLoader(dataset["validation"], batch_size=batch_size, shuffle=True)
+    validation_loader = DataLoader(dataset["validation"], batch_size=batch_size, shuffle=False)
 
     # train
     for epoch in tqdm(range(num_epochs)):
@@ -48,6 +48,7 @@ if __name__ == "__main__":
             optimizer.step()
             loss_sum += loss.item()
 
+        model.eval()
         preds = []
         labels = []
         with torch.no_grad():
